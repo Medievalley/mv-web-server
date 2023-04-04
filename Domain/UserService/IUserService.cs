@@ -6,7 +6,7 @@ namespace Domain.UserService
     {
         Task<bool> CreateUser(CreateUserDTO userDTO);
         Task<bool> UpdateUser(UpdateUserDTO userDTO);
-        Task<bool> DeleteUser(Guid userId);
-        Task<GetUserDTO> GetUser(Guid userId);
+        Task<bool> DeleteUser(string userId);
+        Task<GetUserDTO> GetUser(string userId);
     }
 }

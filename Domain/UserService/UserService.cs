@@ -23,10 +23,10 @@ namespace Domain.UserService
             return false;
         }
 
-        public async Task<GetUserDTO> GetUser(Guid userId)
+        public async Task<GetUserDTO> GetUser(string userId)
         {
             UserEntity userEntity = await _userRepository.GetUserById(userId);
-            if (!string.IsNullOrEmpty(userEntity.Username))
+            if (!string.IsNullOrEmpty(userEntity.Login))
             {
                 GetUserDTO userDTO = _mapper.Map<GetUserDTO>(userEntity);
                 return userDTO;
@@ -43,7 +43,7 @@ namespace Domain.UserService
             return false;
         }
 
-        public async Task<bool> DeleteUser(Guid userId)
+        public async Task<bool> DeleteUser(string userId)
         {
             int rowsAffected = await _userRepository.DeleteUser(userId);
             if (rowsAffected == 1)

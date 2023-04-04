@@ -4,7 +4,7 @@ namespace DataTransferObjects.UserItemDTOs
 {
     public class CreateUserItemDTO
     {
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public Guid ItemId { get; set; }
     }
 
@@ -12,7 +12,7 @@ namespace DataTransferObjects.UserItemDTOs
     {
         public CreateUserItemDTOValidator()
         {
-            RuleFor(x => x.UserId).NotEqual(Guid.Empty);
+            RuleFor(x => x.UserId).NotEqual(string.Empty);
             RuleFor(x => x.ItemId).NotEqual(Guid.Empty);
         }
     }

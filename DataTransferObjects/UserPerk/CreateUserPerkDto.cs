@@ -4,7 +4,7 @@ namespace DataTransferObjects.UserPerkDTOs
 {
     public class CreateUserPerkDTO
     {
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public Guid PerkId { get; set; }
     }
 
@@ -12,7 +12,7 @@ namespace DataTransferObjects.UserPerkDTOs
     {
         public CreateUserPerkDTOValidator()
         {
-            RuleFor(x => x.UserId).NotEqual(Guid.Empty);
+            RuleFor(x => x.UserId).NotEqual(string.Empty);
             RuleFor(x => x.PerkId).NotEqual(Guid.Empty);
         }
     }

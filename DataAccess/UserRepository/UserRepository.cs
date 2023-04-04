@@ -23,8 +23,8 @@ namespace DataAccess.UserRepository
             {
                 using var connection = new NpgsqlConnection(_configuration.GetConnectionString("Default"));
                 int rowsAffected = await connection.ExecuteAsync
-                    ("INSERT INTO users (id, username, email, ip) VALUES (@Id, @Username, @Email, @Ip)",
-                    new { Id = userEntity.Id, Username = userEntity.Username, Email = userEntity.Email, Ip = userEntity.Ip });
+                    ("INSERT INTO users (id, login, ip) VALUES (@Id, @Login, @Ip)",
+                    new { userEntity.Id, userEntity.Login, userEntity.Ip });
 
                 return rowsAffected;
             }
@@ -42,8 +42,8 @@ namespace DataAccess.UserRepository
             {
                 using var connection = new NpgsqlConnection(_configuration.GetConnectionString("Default"));
                 int rowsAffected = await connection.ExecuteAsync
-                    ("UPDATE users SET username = @Username, email = @Email, ip = @Ip, lives = @Lives WHERE id = @Id",
-                    new { Id = userEntity.Id, Username = userEntity.Username, Email = userEntity.Email, Ip = userEntity.Ip, Lives = userEntity.Lives });
+                    ("UPDATE users SET login = @Login, ip = @Ip WHERE id = @Id",
+                    new { userEntity.Id, userEntity.Login, userEntity.Ip });
 
                 return rowsAffected;
             }
@@ -54,7 +54,7 @@ namespace DataAccess.UserRepository
             }
         }
 
-        public async Task<int> DeleteUser(Guid userId)
+        public async Task<int> DeleteUser(string userId)
         {
             try
             {
@@ -71,17 +71,17 @@ namespace DataAccess.UserRepository
             }
         }
 
-        public async Task<UserEntity> GetUserById(Guid userId)
+        public async Task<UserEntity> GetUserById(string userId)
         {
             try
             {
                 using var connection = new NpgsqlConnection(_configuration.GetConnectionString("Default"));
                 var user = await connection.QuerySingleAsync<UserEntity>
-                    (@"SELECT id, username, email, ip, lives FROM 
+                    (@"SELECT id, login, ip FROM 
                    users WHERE id = @Id",
                     new { Id = userId });
 
-                return (UserEntity)user;
+                return user;
             }
             catch (Exception ex)
             {

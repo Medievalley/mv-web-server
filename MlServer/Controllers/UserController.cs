@@ -32,7 +32,7 @@ namespace WebServerApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteUser(Guid userId)
+        public async Task<ActionResult> DeleteUser(string userId)
         {
             if (await _userService.DeleteUser(userId))
                 return Ok();
@@ -40,7 +40,7 @@ namespace WebServerApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetUserDTO>> GetUser(Guid userId)
+        public async Task<ActionResult<GetUserDTO>> GetUser(string userId)
         {
             GetUserDTO userDTO = await _userService.GetUser(userId);
             return Ok(userDTO);

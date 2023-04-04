@@ -27,7 +27,9 @@ namespace WebServerApi.Controllers
         public async Task<ActionResult> UpdateProduct(UpdateProductDTO productDTO)
         {
             if (await _productService.UpdateProduct(productDTO))
+            {
                 return Ok();
+            }
             return BadRequest();
         }
 
@@ -42,14 +44,14 @@ namespace WebServerApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GetProductDTO>> GetProduct(Guid productId)
         {
-            GetProductDTO productDTO = await _productService.GetProduct(productId);
+            var productDTO = await _productService.GetProduct(productId);
             return Ok(productDTO);
         }
 
         [HttpGet]
         public async Task<ActionResult<GetProductDTO>> GetProducts()
         {
-            List<GetProductDTO> productDTOs = await _productService.GetProducts();
+            var productDTOs = await _productService.GetProducts();
             return Ok(productDTOs);
         }
 
@@ -57,7 +59,7 @@ namespace WebServerApi.Controllers
         [Route("Available")]
         public async Task<ActionResult<GetAvailableProductDTO>> GetAvailableProducts()
         {
-            List<GetAvailableProductDTO> productDTOs = await _productService.GetAvailableProducts();
+            var productDTOs = await _productService.GetAvailableProducts();
             return Ok(productDTOs);
         }
     }

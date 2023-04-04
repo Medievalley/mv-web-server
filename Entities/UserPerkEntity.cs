@@ -7,7 +7,7 @@ namespace Entities
         [Column("id")]
         public Guid Id { get; set; }
         [Column("user_id")]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         [Column("perk_id")]
         public Guid PerkId { get; set; }
     }

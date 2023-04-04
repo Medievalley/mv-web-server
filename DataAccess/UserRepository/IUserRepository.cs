@@ -6,7 +6,7 @@ namespace DataAccess.UserRepository
     {
         Task<int> CreateUser(UserEntity userEntity);
         Task<int> UpdateUser(UserEntity userEntity);
-        Task<int> DeleteUser(Guid userId);
-        Task<UserEntity> GetUserById(Guid userId);
+        Task<int> DeleteUser(string userId);
+        Task<UserEntity> GetUserById(string userId);
     }
 }

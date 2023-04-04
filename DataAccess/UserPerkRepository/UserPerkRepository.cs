@@ -33,7 +33,7 @@ namespace DataAccess.UserPerkRepository
                 using var connection = new NpgsqlConnection(_configuration.GetConnectionString("Default"));
                 int rowsAffected = await connection.ExecuteAsync
                     ("INSERT INTO user_perks (user_id, perk_id) VALUES (@UserId, @PerkId)",
-                    new { UserId = userPerkEntity.UserId, PerkId = userPerkEntity.PerkId });
+                    new { userPerkEntity.UserId, userPerkEntity.PerkId });
 
                 return rowsAffected;
             }
