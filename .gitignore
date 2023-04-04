@@ -18,3 +18,8 @@
 /MlServer/bin/Debug
 /MlServer/obj/Debug
 /MlServer/obj
+/DataTransferObjects/bin/Release/net7.0/DataTransferObjects.deps.json
+/DataTransferObjects/bin/Release/net7.0
+/Domain/bin/Release/net7.0
+/Entities/bin/Release/net7.0
+/MlServer/bin/Release/net7.0
